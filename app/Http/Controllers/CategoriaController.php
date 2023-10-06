@@ -69,7 +69,7 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $categorias = new Categoria;
+        $categorias = Categoria::find($id);
         $categorias->delete();
         return redirect()->back();
     }

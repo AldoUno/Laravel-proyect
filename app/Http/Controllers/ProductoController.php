@@ -29,7 +29,13 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productos = new Producto;
+        $productos ->idcategoria=$request->input('idcategoria');
+        $productos ->nombre=$request->input('nombre');
+        $productos ->cantidad=$request->input('cantidad');
+        $productos ->precio=$request->input('precio');
+        $productos ->save();
+        return redirect()->back();
     }
 
     /**
@@ -51,16 +57,24 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $productos = Producto::find($id);
+        $productos ->idcategoria=$request->input('idcategoria');
+        $productos ->nombre=$request->input('nombre');
+        $productos ->cantidad=$request->input('cantidad');
+        $productos ->precio=$request->input('precio');
+        $productos ->update();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        //
+        $categorias = Producto::find($id);
+        $categorias->delete();
+        return redirect()->back();
     }
 }
